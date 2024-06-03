@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="myCanvas" width="400" height="400"></canvas>
+    </div>
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const context = canvas.getContext("2d");
+
+      let x = 50;
+      let y = 50;
+      let squareSize = 50;
+
+      function drawSquare() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        x = x > canvas.width ? 0 : (x += 1);
+        y = y > canvas.width ? 0 : (y += 1);
+        squareSize = squareSize > canvas.width ? 0 : (squareSize += 1);
+        context.fillStyle = "green";
+        context.fillRect(x, y, squareSize, squareSize);
+      }
+
+      function animate() {
+        x += 1;
+        y += 1;
+        drawSquare();
+        requestAnimationFrame(animate);
+      }
+
+      drawSquare();
+      animate();
+    </script>
+  </body>
+</html>
